@@ -1,6 +1,7 @@
 const os = require('os') // Importando um módulo de dentro do node
+const log = require('./logger')
 
-setInterval(() => {
+setInterval(() => { // setInterval(funcao, tempoquevairodarafuncao)
     const { freemem, totalmem } = os
     
     const total = parseInt(totalmem() / 1024 / 1024)
@@ -12,10 +13,13 @@ setInterval(() => {
     const stats = {
         free:  `${mem} MB`,
         total: `${total} MB`,
-        usage:  `${percents}%`,
+        usage:  `${percents}%`
     }
     console.clear()
     console.log("=== PC STATS ===")
     console.table(stats)
+
+    log(`${JSON.stringify(stats)}\n`)
+
 }, 1000)
 
